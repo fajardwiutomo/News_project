@@ -1,4 +1,5 @@
 const { User } = require('../models')
+const axios = require('axios')
 
 class Controller {
     static async register (req, res, next){
@@ -63,12 +64,26 @@ class Controller {
             });
           }
         }
-        
+ 
       } catch (error) {
         next(error)
       }
     }
 
+
+    static async getNews(req, res, next){
+      try {
+        const response = await axios({
+          method: 'GET',
+          url: 'https://newsapi.org/v2/everything?q=bitcoin&apiKey=fb32f43437e2453d928685c787c85348'
+        })
+        const hasil = response.data
+        console.log(hasil)
+        res.status(200).json(hasil)
+      } catch (error) {
+        next(error)
+      }
+    }
 }
 
 module.exports = Controller

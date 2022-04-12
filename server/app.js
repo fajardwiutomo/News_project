@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.post('/register', Controller.register)
 app.post('/login', Controller.login)
+app.get('/news', Controller.getNews)
 
 
 
